@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <title>Информация о пользователях</title>
+</head>
+<body>
+<form method="get" th:action="@{/admin}">
+  <button type="submit">Вернуться</button>
+</form>
+<h3>Список пользователей: </h3>
+<div th:each="person : ${person}">
+  <p th:text="'Логин пользователя: ' + ${person.getLogin()}"></p>
+  <p th:text="'Роль: ' + ${person.getRole()}"></p>
+  <a th:href="@{detailInfoPerson/edit/{id}(id=${person.getId()})}">Редактирование роли</a>
+  <hr>
+</div>
+</body>
+</html>

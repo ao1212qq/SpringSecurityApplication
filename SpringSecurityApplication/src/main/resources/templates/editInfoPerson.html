@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Смена роли пользователя</title>
+</head>
+<body>
+<h3>Смена роли пользователя</h3>
+<form th:method="POST" th:action="@{/detailInfoPerson/edit/{id}(id=${person.getId()})}" th:object="${person}" enctype="multipart/form-data">
+    <label for="role">Смена роли: </label>
+    <select th:field="*{role}" placeholder="Наименование" id="role">
+        <option value="ROLE_USER">Пользователь</option>
+        <option value="ROLE_ADMIN">Администратор</option>
+    </select>
+    <div style="color: red" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></div>
+    <label hidden for="login">Введите логин:</label>
+    <input hidden type="text" th:field="*{login}" placeholder="Логин" id="login">
+    <div style="color: red" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></div>
+    <label hidden for="password">Введите пароль: </label>
+    <input hidden type="text" th:field="*{password}" placeholder="Пароль" id="password">
+    <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+    <br>
+    <input type="submit" value="Редактировать">
+</form>
+</body>
+</html>

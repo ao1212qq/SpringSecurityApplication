@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование статуса заказа</title>
+</head>
+<body>
+<h3>Редактирование статуса заказа</h3>
+<form th:method="POST" th:action="@{/detailInfoOrders/edit/{id}(id=${orders.getId()})}" th:object="${orders}" enctype="multipart/form-data">
+    <p th:text="'Продукт: ' + *{product}" th:field="*{product}"></p>
+    <p th:text="'Номер заказа ' + *{number}" th:field="*{number}"></p>
+    <p th:text="'Количество: ' + *{count}" th:field="*{count}"></p>
+    <p th:text="'Цена: ' + *{price}" th:field="*{price}"></p>
+    <p th:text="'Покупатель: ' + *{person}" th:field="*{person}"></p>
+    <select type="text" th:field="*{status}" placeholder="Статус" id="status">
+        <option value="Принят">Принят</option>
+        <option value="Оформлен">Оформлен</option>
+        <option value="Ожидает">ПОжидает</option>
+        <option value="Получен">Получен</option>
+    </select>
+    <div style="color: red" th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></div>
+    <br>
+    <input type="submit" value="Редактировать">
+</form>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о заказах</title>
+</head>
+<body>
+<form method="get" th:action="@{/admin}">
+    <button type="submit">Вернуться</button>
+</form>
+<form th:method="POST" th:action="@{/detailInfoOrders/search}">
+    <fieldset>
+        <legend>Выберите параметры для сортировки, поиска, фильтрации:</legend>
+        <label for="search">Поиск по наименованию</label>
+        <input type="text" id="search" name="search" th:value="*{value_search}">
+        <br>
+            <br>
+            <br>
+            <input type="submit" value="Найти">
+        </div>
+    </fieldset>
+</form>
+<hr>
+<h3>Результат поиска</h3>
+<div th:each="order : ${search_order}">
+    <p th:text="'Продукт: ' + ${order.getProduct()}"></p>
+    <p th:text="'Номер: ' + ${order.getNumber()}"></p>
+    <p th:text="'Количество: ' + ${order.getCount()}"></p>
+    <p th:text="'Цена: ' + ${order.getPrice()}"></p>
+    <p th:text="'Дата заказа: ' + ${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}">
+    <p th:text="'Покупатель: ' + ${order.getPerson()}"></p>
+    <p th:text="'Статус: ' + ${order.getStatus()}"></p>
+    <hr>
+</div>
+<h3>Список заказов: </h3>
+<div th:each="order : ${orders}">
+    <p th:text="'Продукт: ' + ${order.getProduct()}"></p>
+    <p th:text="'Номер: ' + ${order.getNumber()}"></p>
+    <p th:text="'Количество: ' + ${order.getCount()}"></p>
+    <p th:text="'Цена: ' + ${order.getPrice()}"></p>
+    <p th:text="'Дата заказа: ' + ${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}">
+    <p th:text="'Покупатель: ' + ${order.getPerson()}"></p>
+    <p th:text="'Статус: ' + ${order.getStatus()}"></p>
+    <a th:href="@{detailInfoOrders/edit/{id}(id=${order.getId()})}">Редактирование заказов</a>
+    <hr>
+</div>
+</body>
+</html>

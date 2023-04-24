@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список заказов</title>
+</head>
+<body>
+<h3>Доступные товары: </h3>
+<div th:each="order : ${orders}">
+    <h3 th:text="'Заказ №' + ${order.getNumber()}"></h3>
+    <p th:text="'Наименование: ' + ${order.getProduct().getTitle()}">
+    <p th:text="'Количество: ' + ${order.getCount()}">
+    <p th:text="'Цена: ' + ${order.getPrice()}">
+    <p th:text="'Дата заказа: ' + ${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}"></p>
+    <p th:text="'Покупатель: ' + ${order.getPerson()}"></p>
+    <p th:text="'Cтатус: ' + ${order.getStatus()}">
+</div>
+</body>
+</html>
